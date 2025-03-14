@@ -32,14 +32,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ExercicisStatelessTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Exercici2(modifier = Modifier.padding(innerPadding))
+
+                    //Exercici2(modifier = Modifier.padding(innerPadding))
                     //Exercici3(modifier = Modifier.padding(innerPadding))
+                    Body()
                 }
             }
         }
     }
-}
 @Composable
 fun Exercici2(modifier: Modifier){
     Image(
@@ -157,7 +157,8 @@ fun Exercici3(modifier: Modifier) {
 @Composable
 fun GreetingPreview() {
     ExercicisStatelessTheme {
-        Exercici2(modifier = Modifier)
+        //Exercici2(modifier = Modifier)
         //Exercici3(modifier = Modifier)
+        Body()
     }
 }
