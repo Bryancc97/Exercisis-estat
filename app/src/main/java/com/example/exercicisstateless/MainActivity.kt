@@ -36,7 +36,8 @@ class MainActivity : ComponentActivity() {
                     //Exercici2(modifier = Modifier.padding(innerPadding))
                     //Exercici3(modifier = Modifier.padding(innerPadding))
                     //Body()
-                    Calcular()
+                    //Calcular()
+                    CalcularIMC()
                 }
             }
         }
@@ -161,6 +162,7 @@ fun GreetingPreview() {
         //Exercici2(modifier = Modifier)
         //Exercici3(modifier = Modifier)
         //Body()
-        Calcular()
+        //Calcular()
+        CalcularIMC()
     }
 }

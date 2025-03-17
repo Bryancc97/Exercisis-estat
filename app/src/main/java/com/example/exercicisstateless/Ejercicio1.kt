@@ -23,27 +23,32 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Calcular() {
-    var pMenu: String by remember { mutableStateOf("") }
     var propina: String by remember { mutableStateOf("") }
+    var pMenu: String by remember { mutableStateOf("") }
+    var showText: Boolean by remember { mutableStateOf(false) }
+    var resultado: String by remember { mutableStateOf("") }
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        TextField(value = pMenu, onValueChange = { pMenu = it }, label = { Text("Precio Menu: ") })
         TextField(
-            value = pMenu,
-            onValueChange = { pMenu = it },
-            label = { Text("Precio del menu") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        TextField(value = propina, onValueChange = { propina = it }, label = { Text("Propina") })
-        Button(onClick = { }) {
+            value = propina,
+            onValueChange = { propina = it },
+            label = { Text("Propina %: ") })
+        Button(onClick = {
+            val pMenuValue = pMenu.toFloat()
+            val propinaValue = propina.toFloat()
+            resultado = (pMenuValue * propinaValue / 100).toString()
+            showText = true
+        }) {
             Text("Calcular")
         }
-        Spacer(Modifier.fillMaxHeight(0.1f))
-        //if () {
-        // Text("Hello $pMenu", fontWeight = FontWeight.Bold, fontSize = 24.sp)
-        // }
-
+        Spacer(modifier = Modifier.fillMaxHeight(0.1f))
+        if (showText) {
+            Text("Propina: $resultado", fontWeight = FontWeight.Bold, fontSize = 24.sp)
+        }
     }
+
 }
