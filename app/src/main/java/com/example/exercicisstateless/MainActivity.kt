@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
             ExercicisStatelessTheme {
                     //Calcular()
                     //CalcularIMC()
-                    numerosecreto()
+                    Numerosecreto()
 
                 }
             }
@@ -47,7 +47,7 @@ fun GreetingPreview() {
     ExercicisStatelessTheme {
         //Calcular()
         //CalcularIMC()
-        numerosecreto()
+        Numerosecreto()
 
     }
 }

@@ -2,10 +2,11 @@ package com.example.exercicisstateless
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -22,24 +23,49 @@ import androidx.compose.ui.unit.sp
 import kotlin.random.Random
 
 @Composable
-fun numerosecreto(){
+fun Numerosecreto() {
     var numero: String by remember { mutableStateOf("") }
     var numerorandom: Int by remember { mutableIntStateOf(Random.nextInt(0, 101)) }
     var mensaje: String by remember { mutableStateOf("") }
+    var intentos: Int by remember { mutableIntStateOf(0) }
+
     Column(
-         modifier = Modifier
-             .fillMaxSize()
-             .padding(16.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "Advina el numero entre 0 y 100", fontSize = 20.sp)
+        Text(text = "Adivina el número entre 0 y 100", fontSize = 20.sp)
         TextField(
-        value = numero,
-        onValueChange = { numero = it },
-        label = { Text("Ingrese un número") },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
-
+            value = numero,
+            onValueChange = { numero = it },
+            label = { Text("Ingresa un número") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        Spacer(modifier = Modifier.padding(16.dp))
+        Button(onClick = {
+            val numeroInt = numero.toIntOrNull()
+            if (numeroInt != null) {
+                intentos++ // Contador de intentos
+                mensaje = when {
+                    numeroInt < numerorandom -> "El número es más grande"
+                    numeroInt > numerorandom -> "El número es más pequeño"
+                    else -> {
+                        val resultMessage = "Acertaste y solo te costo $intentos intentos...."
+                        numerorandom = Random.nextInt(0, 101)
+                        // Reinicia el contador de intentos
+                        intentos = 0
+                        resultMessage
+                    }
+                }
+            } else {
+                mensaje = "Por favor, ingresa un número válido."
+            }
+        }) {
+            Text(text = "Adivinar")
+        }
+        Spacer(modifier = Modifier.padding(16.dp))
+        Text(text = mensaje, fontSize = 18.sp)
     }
-
 }
